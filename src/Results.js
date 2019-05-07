@@ -2,16 +2,16 @@ import React from 'react';
 import ResultItem from './ResultItem';
 
 const Results = props => {
-	const { results } = props;
+	const { results, keyword, refreshing } = props;
 
 	return (
-		results &&
-		results.length > 0 && (
-			<div>
-				<div className='content'>
-					<h2 className=' ' style={{ marginTop: 20 }}>
-						Results
-					</h2>
+		keyword && (
+			<div className='content'>
+				<h2 className='has-text-left ' style={{ marginTop: 20 }}>
+					Results for keyword "<i>{keyword}</i>"
+					{refreshing && <span className='loader' />}
+				</h2>
+				{results && results.length > 0 && (
 					<table className='table is-bordered is-striped is-narrow is-hoverable is-fullwidth'>
 						<thead>
 							<tr>
@@ -28,7 +28,7 @@ const Results = props => {
 							})}
 						</tbody>
 					</table>
-				</div>
+				)}{' '}
 			</div>
 		)
 	);

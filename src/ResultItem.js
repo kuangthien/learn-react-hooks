@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import 'bulma';
-import axios from 'axios';
-import Loading from './Loading';
+import React from 'react';
+
 const ResultItem = props => {
 	const { avatar_url, login, type, score } = props;
 	return (
@@ -26,9 +22,7 @@ const ResultItem = props => {
 					{login}
 				</strong>
 			</td>
-
 			<td>{type}</td>
-
 			<td>{score}</td>
 		</tr>
 	);

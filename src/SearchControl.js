@@ -1,16 +1,22 @@
 import React from 'react';
+import _ from 'lodash';
 
 const SearchControl = props => {
-	const { callbackInputChange: handleInputChange, inputValue } = props;
+	const { callbackInputChange: handleInputChange } = props;
+
+ 
+	const handleChange = _.debounce(function(latestTyped) {
+		handleInputChange(latestTyped);
+	}, 1200);
+
 	return (
 		<div className='field'>
 			<div className='control'>
 				<input
-					className='input is-large'
+ 					className='input is-large'
 					type='text'
-					placeholder='Large input'
-					value={inputValue}
-					onChange={e => handleInputChange(e.target.value)}
+					placeholder='Type keyword to search'
+					onChange={e => handleChange(e.target.value)}
 				/>
 			</div>
 		</div>
