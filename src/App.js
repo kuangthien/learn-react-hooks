@@ -29,6 +29,14 @@ function App() {
 		return searchKeyword && searchKeyword.length >= 3;
 	};
 
+	let unavailableItems = [
+		{ startPx: 10, endPx: 30 },
+		{ startPx: 55, endPx: 65 },
+		{ startPx: 35, endPx: 50 },
+		{ startPx: 20, endPx: 40 },
+		{ startPx: 60, endPx: 70 },
+	];
+
 	return (
 		<div className='App section'>
 			<div className='container' style={{ marginTop: 40 }}>
@@ -42,6 +50,9 @@ function App() {
 					refreshing={loading}
 				/>
 			</div>
+			<hr style={{ marginTop: 50 }} />
+			<h3>Some other fun things (WIP):</h3>
+			{JSON.stringify(unavailableItems)}
 		</div>
 	);
 }
