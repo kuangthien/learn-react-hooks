@@ -36,6 +36,35 @@ function App() {
 		{ startPx: 20, endPx: 40 },
 		{ startPx: 60, endPx: 70 },
 	];
+	const mergeUnion = arr => {
+		const sortedArr = arr.sort((a, b) => a.startPx - b.startPx);
+		const arrStart = [];
+		const arrEnd = [];
+
+		for (let i = 0; i < sortedArr.length - 1; i++) {
+			if (sortedArr[i].endPx >= sortedArr[i + 1].startPx) {
+				sortedArr[i].endPx = null;
+				sortedArr[i + 1].startPx = null;
+			}
+		}
+
+		console.log(sortedArr);
+
+		for (let i = 0; i < sortedArr.length; i++) {
+			if (sortedArr[i].startPx !== null)
+				arrStart.push(sortedArr[i].startPx);
+			if (sortedArr[i].endPx !== null) arrEnd.push(sortedArr[i].endPx);
+		}
+
+		const resultArr = [];
+		arrStart.map((v, i) => {
+			resultArr.push({
+				startPx: v,
+				endPx: arrEnd[i],
+			});
+		});
+		return resultArr;
+	};
 
 	return (
 		<div className='App section'>
@@ -51,8 +80,28 @@ function App() {
 				/>
 			</div>
 			<hr style={{ marginTop: 50 }} />
-			<h3>Some other fun things (WIP):</h3>
-			{JSON.stringify(unavailableItems)}
+			<div style={{ textAlign: 'left' }}>
+				<table border='1'>
+					<tbody>
+						<tr>
+							<td>
+								<pre>
+									{JSON.stringify(unavailableItems, null, 2)}
+								</pre>
+							</td>
+							<td>
+								<pre>
+									{JSON.stringify(
+										mergeUnion(unavailableItems),
+										null,
+										2,
+									)}
+								</pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 }
